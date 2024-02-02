@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# if venv/ found, stop
+if [ -d "venv" ]; then
+  echo "venv/ found. Delete it first - STOPPING."
+  exit 1
+fi
+
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# cat EOF into .env
+cat <<EOF > .env
+LANGCHAIN_API_KEY='__YOUR_API_KEY__'
+# ...
+SECRET_KEY=$(openssl rand -hex 32)
+EOF
+
+nano .env

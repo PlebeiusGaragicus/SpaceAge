@@ -1,0 +1,4 @@
+langchain
+# duckduckgo-search 
+langchain-community
+python-dotenv
