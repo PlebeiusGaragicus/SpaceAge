@@ -15,3 +15,7 @@ class Colors(Enum):
 
 def ct(text: str, color: Colors):
     return f"{color.value}{text}{Colors.RESET.value}"
+
+
+def print_color(text: str, color: Colors):
+    print(ct(text, color), end='', flush=True)
