@@ -1,4 +1,10 @@
-langchain
-# duckduckgo-search 
-langchain-community
 python-dotenv
+enquiries
+
+langchain
+langchain-community
+langchain_openai
+langchainhub
+langgraph
+
+# duckduckgo-search 

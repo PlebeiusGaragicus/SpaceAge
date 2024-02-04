@@ -24,8 +24,12 @@ def ct(text: str, color: Colors):
 
 
 # def print_color(text: str, color: Colors, show_token_sep: bool = False):
-def print_color(text: str, color: Colors, show_token_sep: bool = SHOW_TOKEN_BREAKS):
+def print_tokens_in_color(text: str, color: Colors, show_token_sep: bool = SHOW_TOKEN_BREAKS):
     sep = ''
     if show_token_sep:
         sep = ct('|', Colors.GREEN)
     print(ct(text, color), end=sep, flush=True)
+
+
+def color_print(text: str, color: Colors):
+    print(ct(text, color))
