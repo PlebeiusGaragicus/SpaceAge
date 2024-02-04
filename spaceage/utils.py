@@ -1,6 +1,8 @@
 import sys
 from enum import Enum
 
+from spaceage.config import SHOW_TOKEN_BREAKS
+
 class Colors(Enum):
     BLACK = "\033[30m"
     RED = "\033[31m"
@@ -17,5 +19,13 @@ def ct(text: str, color: Colors):
     return f"{color.value}{text}{Colors.RESET.value}"
 
 
-def print_color(text: str, color: Colors):
-    print(ct(text, color), end='', flush=True)
+# def print_color(text: str, color: Colors):
+#     print(ct(text, color), end='', flush=True)
+
+
+# def print_color(text: str, color: Colors, show_token_sep: bool = False):
+def print_color(text: str, color: Colors, show_token_sep: bool = SHOW_TOKEN_BREAKS):
+    sep = ''
+    if show_token_sep:
+        sep = ct('|', Colors.GREEN)
+    print(ct(text, color), end=sep, flush=True)
