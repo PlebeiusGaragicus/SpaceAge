@@ -106,7 +106,7 @@ def create_tavily_runnable():
     # Choose the LLM that will drive the agent
     # llm = ChatOpenAI(model="gpt-3.5-turbo-1106", streaming=True)
     # model_name = 'llama2'
-    llm = OllamaFunctions(model="mistral")
+    llm = OllamaFunctions(model="llama2")
     # model_name = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
 
     # try:
