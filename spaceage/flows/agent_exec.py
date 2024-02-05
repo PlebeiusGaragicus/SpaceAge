@@ -3,14 +3,20 @@ import operator
 from typing import TypedDict, Annotated, List, Union
 
 from langchain import hub
-from langchain.agents import create_openai_functions_agent
+from langchain.agents import create_openai_functions_agent, create_openai_tools_agent
+
 from langchain_openai.chat_models import ChatOpenAI
+from langchain_community.llms.ollama import Ollama, OllamaEndpointNotFoundError
+from langchain_experimental.llms.ollama_functions import OllamaFunctions
+
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_core.agents import AgentAction, AgentFinish
 from langchain_core.messages import BaseMessage
 from langchain_core.agents import AgentFinish
 from langgraph.prebuilt.tool_executor import ToolExecutor
 from langgraph.graph import END, StateGraph
+
+
 
 from spaceage.utils import Colors, color_print
 
@@ -98,10 +104,22 @@ def create_tavily_runnable():
     """
 
     # Choose the LLM that will drive the agent
-    llm = ChatOpenAI(model="gpt-3.5-turbo-1106", streaming=True)
+    # llm = ChatOpenAI(model="gpt-3.5-turbo-1106", streaming=True)
+    # model_name = 'llama2'
+    llm = OllamaFunctions(model="mistral")
+    # model_name = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
+
+    # try:
+        # llm = Ollama(model=model_name)
+    # except OllamaEndpointNotFoundError:
+    #     import ollama
+    #     ollama.pull(model_name)
+    #     llm = Ollama(model=model_name)
+
 
     # Construct the OpenAI Functions agent
     agent_runnable = create_openai_functions_agent(llm, tools, prompt)
+    # agent_runnable = create_openai_tools_agent(llm, tools, prompt)
 
 
 
